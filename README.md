@@ -1,8 +1,8 @@
 # Kodla Yarış
 
-300 bölümlük kodlama oyunu. Öğrenci adını ve soyadını yazarak Firebase profilini açar; bölümler, puanlar, araçlar ve ödüller otomatik kaydedilir.
+300 bölümlük kodlama oyunu. Oyuncular kullanıcı adı ve şifreyle hesap oluşturup giriş yapar; ilerleme, puanlar, araçlar ve ödüller Firebase Realtime Database'e otomatik kaydedilir. Aynı hesapla başka cihazlardan devam edilebilir.
 
-Firebase projesi: `ubilsem-kds`. Kayıt yolu: `kodlayaris_v1/profiles`. İsimle giriş şifreli kimlik doğrulama değildir; aynı isim aynı profili açar.
+Firebase projesi: `ubilsem-kds`. Profil yolu: `kodlayaris_v1/profiles`. Kullanıcı adı gerçek e-posta adresine bağlı değildir; şifre sıfırlama proje yöneticisinin Firebase Authentication panelinden yapılmalıdır. Veri sahipliği için `FIREBASE_AUTH_RULES.md` yönergelerini uygulayın.
 
 Vercel: framework Other; build komutu yok; çıktı klasörü depo kökü. Giriş dosyası `index.html`.
 
