@@ -81,7 +81,7 @@ function confetti(symbol){const box=$('confetti');box.replaceChildren();for(let 
 function renderGarage(){renderUpgrades();const box=$('garage');box.replaceChildren();cars.forEach(car=>{const e=document.createElement('div');e.className='vehicle'+(saved.car===car.id?' selected':'');const picture=document.createElement('span');picture.innerHTML=carSVG(car.color);e.append(picture);const info=document.createElement('div'),name=document.createElement('strong');name.textContent=car.name;info.append(name);const b=document.createElement('button'),owned=saved.owned.includes(car.id);b.textContent=saved.car===car.id?'✓ Seçili':owned?'Aracı seç':'🔒 '+car.price+' puan • Aç';b.disabled=saved.car===car.id||(!owned&&saved.wallet<car.price);b.onclick=()=>{if(!saved.owned.includes(car.id)){if(saved.wallet<car.price)return;saved.wallet-=car.price;saved.owned.push(car.id)}saved.car=car.id;save();render();renderMeta();renderGarage();msg(car.name+' seçildi. Her bölümde garajdan değiştirebilirsin.')};info.append(document.createElement('br'),b);e.append(info);box.append(e)})}
 function openProfiles(){stop();renderProgram();renderMeta();$('username').value=saved.name;$('profileList').replaceChildren();Object.keys(db.profiles).forEach(name=>{const option=document.createElement('option');option.value=name;option.textContent=name;$('profileList').append(option)});$('profileList').value=saved.name;$('profileMessage').textContent='';$('profiles').showModal()}
 async function switchProfile(name,password,mode='signin'){
- name=(name||'').trim().replace(/\\s+/g,' ');
+ name=(name||'').trim().replace(/\s+/g,' ');
  const pm=t=>{$('profileMessage').textContent=t;$('wmsg').textContent=t};
  if(opening)return;
  if(!name||name.length>24){pm('Kullanıcı adın 1–24 karakter olmalı.');return}
