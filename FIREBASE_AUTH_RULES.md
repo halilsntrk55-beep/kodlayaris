@@ -35,6 +35,7 @@ The welcome screen reads the public leaderboard before sign-in. It exposes only 
   "kodlayaris_v1": {
     "leaderboard": {
       ".read": true,
+      ".indexOn": ["score"],
       "$profileKey": {
         ".write": "auth != null && newData.child('ownerUid').val() == auth.uid && (!data.exists() || data.child('ownerUid').val() == auth.uid)",
         ".validate": "newData.hasChildren(['ownerUid', 'name', 'score']) && newData.child('name').isString() && newData.child('name').val().length <= 24 && newData.child('score').isNumber() && newData.child('score').val() >= 0"
