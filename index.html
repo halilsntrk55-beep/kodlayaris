@@ -130,7 +130,7 @@ $('tabBlock').onclick=()=>setMode('block');$('tabText').onclick=()=>setMode('tex
 async function refreshLeaderboard(){
  const list=$('leaderboardList'),status=$('leaderboardStatus');
  try{
-  const r=await request('https://ubilsem-kds-default-rtdb.firebaseio.com/kodlayaris_v1/leaderboard.json?orderBy=%22score%22&limitToLast=50');
+  const r=await request('https://ubilsem-kds-default-rtdb.firebaseio.com/kodlayaris_v1/leaderboard.json');
   const data=await r.json(),rows=Object.values(data||{}).filter(x=>x&&typeof x.name==='string'&&Number.isFinite(Number(x.score))).sort((a,b)=>Number(b.score)-Number(a.score)||a.name.localeCompare(b.name,'tr')).slice(0,10);
   [list,$('leaderboardWelcomeList')].filter(Boolean).forEach(target=>{
    target.replaceChildren();
@@ -139,7 +139,7 @@ async function refreshLeaderboard(){
   });
   const message=rows.length?'Güncel oyuncu sıralaması · toplam puan':'İlk puanları sen toplayabilirsin!';
   status.textContent=message;if($('leaderboardWelcomeStatus'))$('leaderboardWelcomeStatus').textContent=message;
- }catch{status.textContent='Sıralama şu anda yüklenemedi.'}
+ }catch{status.textContent='Sıralama şu anda yüklenemedi.';if($('leaderboardWelcomeStatus'))$('leaderboardWelcomeStatus').textContent='Sıralama şu anda yüklenemedi.';[list,$('leaderboardWelcomeList')].filter(Boolean).forEach(target=>target.replaceChildren(Object.assign(document.createElement('li'),{textContent:'Sıralama yüklenemedi. Biraz sonra yeniden dene.'})))}
 }
 function queueLeaderboard(){
  if(!session)return;
